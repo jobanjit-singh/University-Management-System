@@ -1,0 +1,25 @@
+from tkinter import *
+from tkinter import messagebox
+root = Tk()
+def userpro():
+    messagebox.showinfo("Message","User profile successful")
+def resu():
+    messagebox.showinfo("Message","Result successful")
+width = root.winfo_screenwidth()
+height = root.winfo_screenheight()
+root.title("Student")
+root.geometry("%dx%d+0+0"%(width,height))
+root.config(bg="white")
+f = Frame(root,bg="white")
+l1 = Label(f,text="STUDENT PORTAL",font="times_roman 50 bold",bg="#29c5f6",fg="white")
+l1.pack()
+f.pack()
+f1 = Frame(root,bg="white")
+phot = PhotoImage(file="userprofile.png")
+b1 = Button(f1,image=phot,borderwidth=0,command=userpro)
+b1.grid(row=0,column=0,padx=100,pady=150)
+photo2 = PhotoImage(file="result.png")
+b2 = Button(f1,image=photo2,borderwidth=0,command=resu)
+b2.grid(row=0,column=1,padx=100,pady=150)
+f1.pack()
+root.mainloop()

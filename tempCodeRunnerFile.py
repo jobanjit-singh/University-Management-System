@@ -1,0 +1,1 @@
+l=cur.execute("select * from student1")
