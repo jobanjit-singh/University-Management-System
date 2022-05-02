@@ -12,19 +12,19 @@ def sub():
     lnameval = lname.get()
     mothernameval = mothername.get()
     fathernameval = fathername.get()
-    mobileval = int(Mobile.get())
+    mobileval = Mobile.get()
     emailval = email.get()
     addressval = Add.get()
-    matval = int(matricagg.get())
-    sensecval = int(sen_secc.get())
+    matval = matricagg.get()
+    sensecval = sen_secc.get()
     coursedetval = coursedet.get()
     departval = depart.get()
-    if fname.get()=='' and lname.get()=='' and fathername.get()=='' and mothername.get()=='' and Mobile.get()=='' and email.get()=='' and Add.get()=='' and matricagg.get()=='' and sen_secc.get() =='' and coursedet.get()=='' and depart.get()=='':
+    if fnameval==''and lnameval=='' and mothernameval=='' and fathernameval=='' and mobileval=='' and emailval=='' and addressval=='' and matval=='' and sensecval=='' and coursedetval=='' and departval=='':
         messagebox.showinfo("Registration Form","Entry is Empty")
-    elif fname.get()=='' or lname.get()=='' or fathername.get()=='' or mothername.get()=='' or Mobile.get()=='' or email.get()=='' or Add.get()=='' or matricagg.get()=='' or sen_secc.get() =='' or coursedet.get()=='' or depart.get()=='':
+    elif fnameval==''or lnameval=='' or mothernameval=='' or fathernameval=='' or mobileval=='' or emailval=='' or addressval=='' or matval=='' or sensecval=='' or coursedetval=='' or departval=='':
         messagebox.showinfo("Registration Form","Entry is Empty")
     else:
-        cur.execute("insert into student1 values(sno_seq.nextval,:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":mobileval,":emailval":emailval,":addressval":addressval,":matval":matval,":sensecval":sensecval,":coursedetval":coursedetval,":departval":departval})
+        cur.execute("insert into student1 values(sno_seq.nextval,:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":int(mobileval),":emailval":emailval,":addressval":addressval,":matval":int(matval),":sensecval":int(sensecval),":coursedetval":coursedetval,":departval":departval})
         con.commit()
         messagebox.showinfo("Registration Form","Form Submmitted Successfully...👍")
     cur.close()
