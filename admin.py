@@ -5,6 +5,9 @@ root = Tk()
 def register1():
     root.destroy()
     os.system("Registratonform.py")
+def read12():
+    root.destroy()
+    os.system("readinfoidlogin.py")
 root.title("Admin")
 root.config(bg="white")
 width = root.winfo_screenwidth()
@@ -23,7 +26,7 @@ register.grid(row=0,column=0,padx=100,pady=40)
 
 # Button 2
 readpho = PhotoImage(file="readinfo.png")
-read = Button(f1,image=readpho,borderwidth=0,bg="white")
+read = Button(f1,image=readpho,borderwidth=0,bg="white",command=read12)
 read.grid(row=0,column=1,padx=100,pady=40)
 f1.pack()
 
