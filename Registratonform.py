@@ -24,7 +24,7 @@ def sub():
     elif fnameval==''or lnameval=='' or mothernameval=='' or fathernameval=='' or mobileval=='' or emailval=='' or addressval=='' or matval=='' or sensecval=='' or coursedetval=='' or departval=='':
         messagebox.showinfo("Registration Form","Entry is Empty")
     else:
-        cur.execute("insert into student1 values(sno_seq.nextval,:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":int(mobileval),":emailval":emailval,":addressval":addressval,":matval":int(matval),":sensecval":int(sensecval),":coursedetval":coursedetval,":departval":departval})
+        cur.execute("insert into student1(fname,lname,father_name,mother_name,mobile_no,email_id,address,matric_agg,sen_sec,course,department) values(:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":int(mobileval),":emailval":emailval,":addressval":addressval,":matval":int(matval),":sensecval":int(sensecval),":coursedetval":coursedetval,":departval":departval})
         con.commit()
         messagebox.showinfo("Registration Form","Form Submmitted Successfully...👍")
     cur.close()

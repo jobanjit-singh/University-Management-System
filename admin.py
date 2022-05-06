@@ -8,6 +8,9 @@ def register1():
 def read12():
     root.destroy()
     os.system("readinfoidlogin.py")
+def dle():
+    root.destroy()
+    os.system("deletepage.py")
 root.title("Admin")
 root.config(bg="white")
 width = root.winfo_screenwidth()
@@ -39,7 +42,7 @@ update1.grid(row=0,column=0,padx=100,pady=40)
 
 # Button 2
 delpho = PhotoImage(file="del.png")
-del1 = Button(f2,image=delpho,borderwidth=0,bg="white")
+del1 = Button(f2,image=delpho,borderwidth=0,bg="white",command=dle)
 del1.grid(row=0,column=1,padx=100,pady=40)
 f2.pack()
 root.mainloop()
