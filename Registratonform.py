@@ -1,13 +1,12 @@
+#-------------------Registration Form Module-----------------
 from tkinter import *
 import os
 import cx_Oracle as co
 from tkinter import messagebox
 def cancel1():
     ro.destroy()
-    os.system("homescreen.py")
+    os.system("admin.py")
 def sub():
-    con = co.connect("scott/tiger")
-    cur = con.cursor()
     fnameval = fname.get()
     lnameval = lname.get()
     mothernameval = mothername.get()
@@ -19,27 +18,25 @@ def sub():
     sensecval = sen_secc.get()
     coursedetval = coursedet.get()
     departval = depart.get()
-    if fnameval==''and lnameval=='' and mothernameval=='' and fathernameval=='' and mobileval=='' and emailval=='' and addressval=='' and matval=='' and sensecval=='' and coursedetval=='' and departval=='':
+    if fnameval==''and lnameval=='' and mothernameval=='' and fathernameval=='' and mobileval=='' and emailval=='' and addressval=='' and matval=='' and sensecval=='' and coursedetval=='Select' and departval=='Select':
         messagebox.showinfo("Registration Form","Entry is Empty")
-    elif fnameval==''or lnameval=='' or mothernameval=='' or fathernameval=='' or mobileval=='' or emailval=='' or addressval=='' or matval=='' or sensecval=='' or coursedetval=='' or departval=='':
+    elif fnameval==''or lnameval=='' or mothernameval=='' or fathernameval=='' or mobileval=='' or emailval=='' or addressval=='' or matval=='' or sensecval=='' or coursedetval=='Select' or departval=='Select':
         messagebox.showinfo("Registration Form","Entry is Empty")
     else:
-        cur.execute("insert into student1(fname,lname,father_name,mother_name,mobile_no,email_id,address,matric_agg,sen_sec,course,department) values(:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":int(mobileval),":emailval":emailval,":addressval":addressval,":matval":int(matval),":sensecval":int(sensecval),":coursedetval":coursedetval,":departval":departval})
-        con.commit()
-        messagebox.showinfo("Registration Form","Form Submmitted Successfully...👍")
-    cur.close()
-    con.close()
-    '''efname.delete()
-    elname.delete()
-    efathername.delete()
-    emothername.delete()
-    emobileno.delete()
-    emailid.delete()
-    eaddress.delete()
-    emat.delete()
-    sendata.delete()
-    courses.delete()
-    dep.delete()'''
+        try:
+            con = co.connect("scott/tiger")
+            cur = con.cursor()
+            cur.execute("insert into student1(fname,lname,father_name,mother_name,mobile_no,email_id,address,matric_agg,sen_sec,course,department) values (:fnameval,:lnameval,:fathernameval,:mothernameval,:mobileval,:emailval,:addressval,:matval,:sensecval,:coursedetval,:departval)",{":fnameval":fnameval,":lnameval":lnameval,":fathernameval":fathernameval,":mothernameval":mothernameval,":mobileval":int(mobileval),":emailval":emailval,":addressval":addressval,":matval":int(matval),":sensecval":int(sensecval),":coursedetval":coursedetval,":departval":departval})
+            con.commit()
+            cur.close()
+            con.close()
+            ro.destroy()
+            messagebox.showinfo("Registration Form","Form Submmitted Successfully")
+            os.system("Registratonform.py")
+        except:
+            ro.destroy()
+            messagebox.showwarning("Registration Form","Enter Valid Data")
+            os.system("Registratonform.py")
 ro = Tk()
 ro.config(bg="white")
 width1 = ro.winfo_screenwidth()
@@ -78,15 +75,17 @@ eaddress = Entry(f2,textvariable=Add,font="times_roman 15 bold").grid(row=6,colu
 matricagg = StringVar()
 sen_secc = StringVar()
 coursedet = StringVar()
+coursedet.set('Select')
 depart = StringVar()
+depart.set("Select")
 l1 = Label(f2,text="Matric Aggregate's:",fg="white",bg="#808080",font="times_roman 15 bold").grid(row=7,column=0,padx=10,pady=10,sticky="w")
 l2 = Label(f2,text="Sen_Sec:",fg="white",bg="#808080",font="times_roman 15 bold").grid(row=8,column=0,padx=10,pady=10,sticky="w")
 l3 = Label(f2,text="Course:",fg="white",bg="#808080",font="times_roman 15 bold").grid(row=9,column=0,padx=10,pady=10,sticky="w")
 l4 = Label(f2,text="Department:",fg="white",bg="#808080",font="times_roman 15 bold").grid(row=10,column=0,padx=10,pady=10,sticky="w")
 emat = Entry(f2,textvariable=matricagg,font="times_roman 15 bold").grid(row=7,column=1,padx=10,pady=10,sticky="w")
 sendata = Entry(f2,textvariable=sen_secc,font="times_roman 15 bold").grid(row=8,column=1,padx=10,pady=10,sticky="w")
-courses = Entry(f2,textvariable=coursedet,font="times_roman 15 bold").grid(row=9,column=1,padx=10,pady=10,sticky="w")
-dep = Entry(f2,textvariable=depart,font="times_roman 15 bold").grid(row=10,column=1,padx=10,pady=10,sticky="w")
+courses = OptionMenu(f2,coursedet,'B.Tech','Management','Computer Application','Pharmacy').grid(row=9,column=1,padx=10,pady=10,sticky="w")
+dep = OptionMenu(f2,depart,'CSE','CE','ECE','ME','BBA','B.COM(HONS)','MBA','B.A','BCA','MCA','B.PHARMACY','D.PHARMACY','B.Sc').grid(row=10,column=1,padx=10,pady=10,sticky="w")
 f2.pack()
 
 # Frame 3

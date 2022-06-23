@@ -1,15 +1,20 @@
-#---------------Read-information Module---------------
+#-----------------------read-information Student Module--------------
 import os
 from tkinter import *
 from tkinter import messagebox
 import cx_Oracle as cs
 def cal():
     root.destroy()
-    os.system("admin.py")
+    os.system("student.py")
 def read1():
     idval = id.get()
+    f = open("usernaem.txt",'r')
+    s = f.read()
+    f.close()
     if idval=='':
         messagebox.showinfo("ID ENTRY","Entry is Empty")
+    elif s!=idval:
+        messagebox.showwarning("ID ENTRY","Please Enter Own university rollno number")
     else:
         conn = cs.connect("scott/tiger")
         cur = conn.cursor()
@@ -28,7 +33,7 @@ def read1():
 def showinfo():
     def calcl():
         r.destroy()
-        os.system("admin.py")
+        os.system("student.py")
     r = Tk()
     width = r.winfo_screenwidth()
     height = r.winfo_screenheight()
@@ -91,4 +96,3 @@ Button(f2,text="  Read  ",font="times_roman 10 bold",borderwidth = 2,command=rea
 Button(f2,text="Cancel",font="times_roman 10 bold",borderwidth = 2,command=cal).grid(row=0,column=1,padx=10,pady=10)
 f2.pack()
 root.mainloop()
-

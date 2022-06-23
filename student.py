@@ -1,10 +1,17 @@
+#----------------------Student Module--------------
+import os
 from tkinter import *
 from tkinter import messagebox
 root = Tk()
 def userpro():
-    messagebox.showinfo("Message","User profile successful")
+    root.destroy()
+    os.system("readinfoidloginstudent.py")
 def resu():
-    messagebox.showinfo("Message","Result successful")
+        root.destroy()
+        os.system("result.py")
+def backu():
+    root.destroy()
+    os.system("homescreen.py")
 width = root.winfo_screenwidth()
 height = root.winfo_screenheight()
 root.title("Student")
@@ -17,9 +24,14 @@ f.pack()
 f1 = Frame(root,bg="white")
 phot = PhotoImage(file="userprofile.png")
 b1 = Button(f1,image=phot,borderwidth=0,command=userpro)
-b1.grid(row=0,column=0,padx=100,pady=150)
+b1.grid(row=0,column=0,padx=10,pady=10)
 photo2 = PhotoImage(file="result.png")
 b2 = Button(f1,image=photo2,borderwidth=0,command=resu)
-b2.grid(row=0,column=1,padx=100,pady=150)
+b2.grid(row=0,column=1,padx=10,pady=10)
 f1.pack()
+f2=Frame(root,bg="white")
+backbut = PhotoImage(file="back1.png")
+b2 = Button(f2,image=backbut,borderwidth=0,command=backu)
+b2.grid(row=0,column=1,padx=10,pady=10)
+f2.pack()
 root.mainloop()

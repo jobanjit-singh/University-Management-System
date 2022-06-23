@@ -1,3 +1,4 @@
+#-----------------Login Module------------
 import os
 import cx_Oracle
 from tkinter import *
@@ -17,7 +18,11 @@ def enter1():
         for i in ls:
             if i[0]==usern.get() and i[1]==passw.get():
                 fla = 0
+                f = open("usernaem.txt","w")
+                f.write(usern.get())
+                f.close()
         if fla == 0:
+            root.destroy()
             os.system("student.py")
         else:
             messagebox.showinfo("University Management System","Incorect Username and Password")
@@ -28,7 +33,7 @@ def enter1():
             if i[0]==usern.get() and i[1]==passw.get():
                 fla = 0
         if fla == 0:
-            des()
+            root.destroy()
             os.system("admin.py")
         else:
             messagebox.showinfo("University Management System","Incorect Username and Password")
@@ -36,6 +41,7 @@ def enter1():
     con.close()
 def des():
     root.destroy()
+    os.system("homescreen.py")
 root.title("University Management System")
 root.geometry("350x450")
 root.minsize(450,350)
@@ -75,3 +81,5 @@ b1.pack(side=LEFT,padx=10,pady=10)
 b2.pack(side=LEFT,padx=10,pady=10)
 f3.pack()
 root.mainloop()
+
+
